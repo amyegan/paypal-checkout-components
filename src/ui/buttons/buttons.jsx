@@ -95,7 +95,7 @@ export function validateButtonProps(props : ButtonPropsInputs) {
 export function Buttons(props : ButtonsProps) : ElementNode {
     const { onClick = noop } = props;
     const { wallet, fundingSource, style, locale, remembered, env, fundingEligibility, platform, commit, vault,
-        nonce, components, onShippingChange, personalization, userIDToken, content, flow, experiment } = normalizeButtonProps(props);
+        nonce, components, onShippingChange, personalization, userIDToken, content, flow, experiment, fundingPaymentNonce } = normalizeButtonProps(props);
     const { layout, shape, tagline } = style;
 
     let fundingSources = determineEligibleFunding({ fundingSource, layout, remembered, platform, fundingEligibility, components, onShippingChange, flow, wallet });
@@ -113,7 +113,7 @@ export function Buttons(props : ButtonsProps) : ElementNode {
 
     const isWallet = (
         flow === BUTTON_FLOW.PURCHASE,
-        ((__WEB__ && userIDToken) || Object.keys(instruments).length)
+        ((__WEB__ && (userIDToken || fundingPaymentNonce)) || Object.keys(instruments).length)
     );
 
     return (

@@ -189,7 +189,8 @@ export type RenderButtonProps = {|
     flow : $Values<typeof BUTTON_FLOW>,
     experiment : Experiment,
     vault : boolean,
-    userIDToken : ?string
+    userIDToken : ?string,
+    fundingPaymentNonce? : ?string
 |};
 
 export type PrerenderDetails = {|
@@ -263,7 +264,8 @@ export type ButtonPropsInputs = {
     flow? : $Values<typeof BUTTON_FLOW>,
     experiment : Experiment,
     vault : boolean,
-    userIDToken : ?string
+    userIDToken : ?string,
+    fundingPaymentNonce? : ?string
 };
 
 export const DEFAULT_STYLE = {
@@ -396,7 +398,8 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
         flow = BUTTON_FLOW.PURCHASE,
         experiment = getDefaultExperiment(),
         vault,
-        userIDToken
+        userIDToken,
+        fundingPaymentNonce
     } = props;
 
     const { country, lang } = locale;
@@ -443,5 +446,5 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
 
     return { clientID, fundingSource, style, locale, remembered, env, fundingEligibility, platform, clientAccessToken,
         buttonSessionID, commit, sessionID, nonce, components, onShippingChange, personalization, content, wallet, flow,
-        experiment, vault, userIDToken };
+        experiment, vault, userIDToken, fundingPaymentNonce };
 }
