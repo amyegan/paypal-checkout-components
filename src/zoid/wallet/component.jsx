@@ -246,6 +246,13 @@ export function getWalletComponent() : WalletComponent {
                     type:       'boolean',
                     value:      getDebug,
                     queryParam: true
+                },
+
+                fundingPaymentNonce: {
+                    type:       'string',
+                    required:   false,
+                    default:    () => 'xyz789',
+                    queryParam: true
                 }
             }
         });
