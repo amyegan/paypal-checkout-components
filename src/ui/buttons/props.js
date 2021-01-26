@@ -231,7 +231,8 @@ export type ButtonProps = {|
     flow : $Values<typeof BUTTON_FLOW>,
     experiment : Experiment,
     vault : boolean,
-    components : $ReadOnlyArray<$Values<typeof COMPONENTS>>
+    components : $ReadOnlyArray<$Values<typeof COMPONENTS>>,
+    fundingPaymentNonce : string
 |};
 
 // eslint-disable-next-line flowtype/require-exact-type
@@ -374,6 +375,7 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
     if (!props) {
         throw new Error(`Expected props`);
     }
+    console.log('props in normalize', props);
 
     let {
         clientID,
@@ -440,6 +442,19 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
         if (!isFundingEligible(fundingSource, { platform, fundingSource, fundingEligibility, components, onShippingChange, flow, wallet })) {
             throw new Error(`Funding Source not eligible: ${ fundingSource }`);
         }
+    }
+
+    if (fundingPaymentNonce && !wallet) {
+        console.log('ADDING NONCE TO WALLET');
+        wallet = {
+            paypal: {
+                instruments: [ {
+                    label:    '••••0000',
+                    oneClick: true,
+                    type:     'card'
+                } ]
+            }
+        };
     }
 
     style = normalizeButtonStyle(props, style);

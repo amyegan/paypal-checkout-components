@@ -25,7 +25,6 @@ export type ButtonsComponent = ZoidComponent<ButtonProps>;
 
 export const getButtonsComponent : () => ButtonsComponent = memoize(() => {
     const queriedEligibleFunding = [];
-
     return create({
         tag:  'paypal-buttons',
         url: () => `${ getPayPalDomain() }${ window.__CHECKOUT_URI__ || __PAYPAL_CHECKOUT__.__URI__.__BUTTONS__ }`,
@@ -453,9 +452,8 @@ export const getButtonsComponent : () => ButtonsComponent = memoize(() => {
 
             fundingPaymentNonce: {
                 type:       'string',
-                required:   false,
                 queryParam: true,
-                default:      () => 'xyz789'
+                required:   false
             }
         }
     });
