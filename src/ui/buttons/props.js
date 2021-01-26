@@ -190,7 +190,7 @@ export type RenderButtonProps = {|
     experiment : Experiment,
     vault : boolean,
     userIDToken : ?string,
-    fundingPaymentNonce? : ?string
+    paymentMethodNonce? : ?string
 |};
 
 export type PrerenderDetails = {|
@@ -232,7 +232,7 @@ export type ButtonProps = {|
     experiment : Experiment,
     vault : boolean,
     components : $ReadOnlyArray<$Values<typeof COMPONENTS>>,
-    fundingPaymentNonce : string
+    paymentMethodNonce : string
 |};
 
 // eslint-disable-next-line flowtype/require-exact-type
@@ -266,7 +266,7 @@ export type ButtonPropsInputs = {
     experiment : Experiment,
     vault : boolean,
     userIDToken : ?string,
-    fundingPaymentNonce? : ?string
+    paymentMethodNonce? : ?string
 };
 
 export const DEFAULT_STYLE = {
@@ -401,7 +401,7 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
         experiment = getDefaultExperiment(),
         vault,
         userIDToken,
-        fundingPaymentNonce
+        paymentMethodNonce
     } = props;
 
     const { country, lang } = locale;
@@ -444,16 +444,20 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
         }
     }
 
-    if (fundingPaymentNonce && !wallet) {
+    if (paymentMethodNonce && !wallet) {
         console.log('ADDING NONCE TO WALLET');
         wallet = {
             paypal: {
-                instruments: [ {
-                    label:    '••••0000',
-                    oneClick: true,
-                    type:     'card'
-                } ]
-            }
+                instruments: [
+                    {
+                        type:     'card',
+                        label:    '••1337',
+                        oneClick: true
+                    }
+                ]
+            },
+            card:   [],
+            credit: []
         };
     }
 
@@ -461,5 +465,5 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
 
     return { clientID, fundingSource, style, locale, remembered, env, fundingEligibility, platform, clientAccessToken,
         buttonSessionID, commit, sessionID, nonce, components, onShippingChange, personalization, content, wallet, flow,
-        experiment, vault, userIDToken, fundingPaymentNonce };
+        experiment, vault, userIDToken, paymentMethodNonce };
 }
