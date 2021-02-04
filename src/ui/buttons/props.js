@@ -190,7 +190,9 @@ export type RenderButtonProps = {|
     experiment : Experiment,
     vault : boolean,
     userIDToken : ?string,
-    paymentMethodNonce? : ?string
+    paymentMethodNonce? : ?string,
+    supportsPopups : boolean,
+    supportedNativeBrowser : boolean
 |};
 
 export type PrerenderDetails = {|
@@ -232,7 +234,9 @@ export type ButtonProps = {|
     experiment : Experiment,
     vault : boolean,
     components : $ReadOnlyArray<$Values<typeof COMPONENTS>>,
-    paymentMethodNonce : string
+    paymentMethodNonce : string,
+    supportsPopups : boolean,
+    supportedNativeBrowser : boolean
 |};
 
 // eslint-disable-next-line flowtype/require-exact-type
@@ -266,7 +270,9 @@ export type ButtonPropsInputs = {
     experiment : Experiment,
     vault : boolean,
     userIDToken : ?string,
-    paymentMethodNonce? : ?string
+    paymentMethodNonce? : ?string,
+    supportsPopups : boolean,
+    supportedNativeBrowser : boolean
 };
 
 export const DEFAULT_STYLE = {
@@ -338,7 +344,7 @@ export function normalizeButtonStyle(props : ?ButtonPropsInputs, style : ButtonS
         if (typeof height !== 'number') {
             throw new TypeError(`Expected style.height to be a number, got: ${ height }`);
         }
-        
+
         const [ minHeight, maxHeight ] = [ BUTTON_SIZE_STYLE[BUTTON_SIZE.SMALL].minHeight, BUTTON_SIZE_STYLE[BUTTON_SIZE.HUGE].maxHeight ];
 
         if (height < minHeight || height > maxHeight) {
@@ -401,7 +407,9 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
         experiment = getDefaultExperiment(),
         vault,
         userIDToken,
-        paymentMethodNonce
+        paymentMethodNonce,
+        supportsPopups = false,
+        supportedNativeBrowser = false
     } = props;
 
     const { country, lang } = locale;
@@ -439,7 +447,7 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
             throw new Error(`Invalid funding source: ${ fundingSource }`);
         }
 
-        if (!isFundingEligible(fundingSource, { platform, fundingSource, fundingEligibility, components, onShippingChange, flow, wallet })) {
+        if (!isFundingEligible(fundingSource, { platform, fundingSource, fundingEligibility, components, onShippingChange, flow, wallet, supportsPopups, supportedNativeBrowser })) {
             throw new Error(`Funding Source not eligible: ${ fundingSource }`);
         }
     }
@@ -465,5 +473,5 @@ export function normalizeButtonProps(props : ?ButtonPropsInputs) : RenderButtonP
 
     return { clientID, fundingSource, style, locale, remembered, env, fundingEligibility, platform, clientAccessToken,
         buttonSessionID, commit, sessionID, nonce, components, onShippingChange, personalization, content, wallet, flow,
-        experiment, vault, userIDToken, paymentMethodNonce };
+        experiment, vault, userIDToken, paymentMethodNonce, supportsPopups, supportedNativeBrowser };
 }

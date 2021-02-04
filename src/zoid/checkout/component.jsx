@@ -75,7 +75,7 @@ export function getCheckoutComponent() : CheckoutComponent {
                     value:      getSessionID,
                     queryParam: true
                 },
-        
+
                 buttonSessionID: {
                     type:       'string',
                     queryParam: true,
