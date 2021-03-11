@@ -1,3 +1,39 @@
+## <small>5.0.145 (2021-03-08)</small>
+
+* Clean up commented code ([7b060df](https://github.com/paypal/paypal-checkout-components/commit/7b060df))
+* update size (#1564) ([54ea975](https://github.com/paypal/paypal-checkout-components/commit/54ea975)), closes [#1564](https://github.com/paypal/paypal-checkout-components/issues/1564)
+* Update Venmo ramp to 5% (#1563) ([9b81ca8](https://github.com/paypal/paypal-checkout-components/commit/9b81ca8)), closes [#1563](https://github.com/paypal/paypal-checkout-components/issues/1563)
+
+
+
+## <small>5.0.144 (2021-03-02)</small>
+
+* Create separate venmo experiments based on mobile platform (#1558) ([e52523a](https://github.com/paypal/paypal-checkout-components/commit/e52523a)), closes [#1558](https://github.com/paypal/paypal-checkout-components/issues/1558)
+
+
+
+## <small>5.0.143 (2021-02-25)</small>
+
+* Add button labels for sq_AL, si_LK (#1545) ([6bc7a3d](https://github.com/paypal/paypal-checkout-components/commit/6bc7a3d)), closes [#1545](https://github.com/paypal/paypal-checkout-components/issues/1545)
+* Add client-side experiment for venmo (#1549) ([550ea82](https://github.com/paypal/paypal-checkout-components/commit/550ea82)), closes [#1549](https://github.com/paypal/paypal-checkout-components/issues/1549)
+* Allow clientMetadataID to be passed into button render ([01d90b4](https://github.com/paypal/paypal-checkout-components/commit/01d90b4))
+* chore(release): 5.0.141 :tada: ([e884748](https://github.com/paypal/paypal-checkout-components/commit/e884748))
+* chore(release): 5.0.142 :tada: ([b9ceed5](https://github.com/paypal/paypal-checkout-components/commit/b9ceed5))
+
+
+
+## <small>5.0.142 (2021-02-19)</small>
+
+* Add button labels for sq_AL, si_LK (#1545) ([6bc7a3d](https://github.com/paypal/paypal-checkout-components/commit/6bc7a3d)), closes [#1545](https://github.com/paypal/paypal-checkout-components/issues/1545)
+
+
+
+## <small>5.0.141 (2021-02-11)</small>
+
+* Allow clientMetadataID to be passed into button render ([01d90b4](https://github.com/paypal/paypal-checkout-components/commit/01d90b4))
+
+
+
 ## <small>5.0.140 (2021-02-08)</small>
 
 * Add 'supportedNativeBrowser' as a valid query param (#1538) ([c235ead](https://github.com/paypal/paypal-checkout-components/commit/c235ead)), closes [#1538](https://github.com/paypal/paypal-checkout-components/issues/1538)
