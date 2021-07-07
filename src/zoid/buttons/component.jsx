@@ -505,6 +505,12 @@ export const getButtonsComponent : () => ButtonsComponent = memoize(() => {
                 required:   false
             },
 
+            merchantAccessToken: {
+                type:       'string',
+                queryParam: true,
+                required:   false
+            },
+
             applePaySupport: {
                 type:       'boolean',
                 value:      ({ props }) => {
